@@ -145,8 +145,11 @@ public class Caller {
             return result;
         } catch (final IOException ignored) {
         } catch (final SAXException ignored) {
-        }
-        return null;
+        } catch (Exception e) {
+        	//maybe a null exception.
+//			e.printStackTrace();
+		}
+        return Result.createHttpErrorResult(-2, "meet a exception");
     }
 
     /**

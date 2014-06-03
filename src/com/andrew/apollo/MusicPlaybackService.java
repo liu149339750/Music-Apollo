@@ -1004,7 +1004,6 @@ public class MusicPlaybackService extends Service {
     private void updateCursor(final String selection, final String[] selectionArgs) {
         synchronized (this) {
             closeCursor();
-
             mCursor = openCursorAndGoToFirst(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
                     PROJECTION, selection, selectionArgs);
         }
@@ -1021,7 +1020,7 @@ public class MusicPlaybackService extends Service {
     private Cursor openCursorAndGoToFirst(Uri uri, String[] projection,
             String selection, String[] selectionArgs) {
         Cursor c = getContentResolver().query(uri, projection,
-                selection, selectionArgs, null, null);
+                selection, selectionArgs, null);
         if (c == null) {
             return null;
         }
@@ -2546,7 +2545,8 @@ public class MusicPlaybackService extends Service {
          */
         public void setNextDataSource(final String path) {
             try {
-                mCurrentMediaPlayer.setNextMediaPlayer(null);
+            	if(ApolloUtils.hasJellyBean())
+            		mCurrentMediaPlayer.setNextMediaPlayer(null);
             } catch (IllegalArgumentException e) {
                 Log.i(TAG, "Next media player is current one, continuing");
             } catch (IllegalStateException e) {
@@ -2565,7 +2565,10 @@ public class MusicPlaybackService extends Service {
             if(ApolloUtils.hasSdk(Build.VERSION_CODES.GINGERBREAD))
             	mNextMediaPlayer.setAudioSessionId(getAudioSessionId());
             if (setDataSourceImpl(mNextMediaPlayer, path)) {
-                mCurrentMediaPlayer.setNextMediaPlayer(mNextMediaPlayer);
+            	if(ApolloUtils.hasJellyBean())
+            		mCurrentMediaPlayer.setNextMediaPlayer(mNextMediaPlayer);
+//            	else
+//            		mNextMediaPlayer.prepareAsync();
             } else {
                 if (mNextMediaPlayer != null) {
                     mNextMediaPlayer.release();
@@ -2703,6 +2706,18 @@ public class MusicPlaybackService extends Service {
             if (mp == mCurrentMediaPlayer && mNextMediaPlayer != null) {
                 mCurrentMediaPlayer.release();
                 mCurrentMediaPlayer = mNextMediaPlayer;
+                if(!ApolloUtils.hasJellyBean()){
+                	try {
+						mCurrentMediaPlayer.prepare();
+						mCurrentMediaPlayer.start();
+					} catch (IllegalStateException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+                }
                 mNextMediaPlayer = null;
                 mHandler.sendEmptyMessage(TRACK_WENT_TO_NEXT);
             } else {

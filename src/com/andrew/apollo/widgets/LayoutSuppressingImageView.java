@@ -34,9 +34,9 @@ public class LayoutSuppressingImageView extends ImageView {
     /**
      * {@inheritDoc}
      */
-//    @Override
-//    public void requestLayout() {
-//        forceLayout();
-//    }
+    @Override
+    public void requestLayout() {
+        forceLayout();
+    }
 
 }

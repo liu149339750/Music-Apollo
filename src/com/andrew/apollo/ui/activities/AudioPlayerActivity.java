@@ -24,6 +24,7 @@ import android.content.ServiceConnection;
 import android.media.AudioManager;
 import android.media.audiofx.AudioEffect;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -36,6 +37,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -795,11 +797,17 @@ public class AudioPlayerActivity extends SherlockFragmentActivity implements Ser
      * @param alpha The alpha to apply
      */
     private void fade(final View v, final float alpha) {
+    	if(ApolloUtils.hasSdk(Build.VERSION_CODES.HONEYCOMB)){
         final ObjectAnimator fade = ObjectAnimator.ofFloat(v, "alpha", alpha);
         fade.setInterpolator(AnimationUtils.loadInterpolator(this,
                 android.R.anim.accelerate_decelerate_interpolator));
         fade.setDuration(400);
         fade.start();
+    	}else {
+    		AlphaAnimation animation = new AlphaAnimation(alpha > 0 ? 0 : 1, alpha);
+    		animation.setFillAfter(true);
+    		v.startAnimation(animation);
+    	}
     }
 
     /**

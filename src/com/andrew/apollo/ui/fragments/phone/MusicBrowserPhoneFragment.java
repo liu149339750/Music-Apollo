@@ -12,12 +12,14 @@
 package com.andrew.apollo.ui.fragments.phone;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -28,6 +30,7 @@ import com.andrew.apollo.adapters.PagerAdapter.MusicFragments;
 import com.andrew.apollo.ui.fragments.AlbumFragment;
 import com.andrew.apollo.ui.fragments.ArtistFragment;
 import com.andrew.apollo.ui.fragments.SongFragment;
+import com.andrew.apollo.utils.ApolloUtils;
 import com.andrew.apollo.utils.MusicUtils;
 import com.andrew.apollo.utils.NavUtils;
 import com.andrew.apollo.utils.PreferenceUtils;
@@ -190,7 +193,9 @@ public class MusicBrowserPhoneFragment extends SherlockFragment implements
                 // Toggle the current track as a favorite and update the menu
                 // item
                 MusicUtils.toggleFavorite();
-                getActivity().invalidateOptionsMenu();
+                if(ApolloUtils.hasSdk(Build.VERSION_CODES.HONEYCOMB))
+                	getActivity().invalidateOptionsMenu();
+                
                 return true;
             case R.id.menu_sort_by_az:
                 if (isArtistPage()) {

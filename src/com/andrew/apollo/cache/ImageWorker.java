@@ -332,7 +332,8 @@ public abstract class ImageWorker {
      */
     private static final BitmapWorkerTask getBitmapWorkerTask(final ImageView imageView) {
         if (imageView != null) {
-            final Drawable drawable = imageView.getDrawable();
+//            final Drawable drawable = imageView.getDrawable();
+        	final Drawable drawable = (Drawable) imageView.getTag();
             if (drawable instanceof AsyncDrawable) {
                 final AsyncDrawable asyncDrawable = (AsyncDrawable)drawable;
                 return asyncDrawable.getBitmapWorkerTask();
@@ -396,7 +397,9 @@ public abstract class ImageWorker {
             final BitmapWorkerTask bitmapWorkerTask = new BitmapWorkerTask(imageView, imageType);
             final AsyncDrawable asyncDrawable = new AsyncDrawable(mResources, mDefault,
                     bitmapWorkerTask);
-            imageView.setImageDrawable(asyncDrawable);
+//            imageView.setImageDrawable(asyncDrawable);
+            imageView.setImageBitmap(mDefault);
+            imageView.setTag(asyncDrawable);
             try {
                 ApolloUtils.execute(false, bitmapWorkerTask, key,
                         artistName, albumName, String.valueOf(albumId));

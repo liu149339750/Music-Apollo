@@ -12,6 +12,7 @@
 package com.andrew.apollo.widgets;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
@@ -56,10 +57,11 @@ public class VerticalScrollListener implements OnScrollListener {
                     -mTabCarousel.getAllowedVerticalScrollLength());
             return;
         }
-
-        float y = view.getChildAt(firstVisibleItem).getY();
-        final float amtToScroll = Math.max(y, -mTabCarousel.getAllowedVerticalScrollLength());
-        mTabCarousel.moveToYCoordinate(mPageIndex, amtToScroll);
+        if(ApolloUtils.hasSdk(Build.VERSION_CODES.HONEYCOMB)){
+        	float y = view.getChildAt(firstVisibleItem).getY();
+        	final float amtToScroll = Math.max(y, -mTabCarousel.getAllowedVerticalScrollLength());
+        	mTabCarousel.moveToYCoordinate(mPageIndex, amtToScroll);
+        }
     }
 
     /**

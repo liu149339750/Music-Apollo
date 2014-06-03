@@ -13,12 +13,15 @@ package com.andrew.apollo.ui.activities;
 
 import net.youmi.android.AdManager;
 import net.youmi.android.diy.DiyManager;
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
@@ -26,7 +29,6 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.view.MenuItem;
-
 import com.andrew.apollo.MusicPlaybackService;
 import com.andrew.apollo.R;
 import com.andrew.apollo.cache.ImageCache;
@@ -54,7 +56,8 @@ public class SettingsActivity extends PreferenceActivity {
     /**
      * {@inheritDoc}
      */
-    @Override
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	@Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Fade it in
@@ -64,8 +67,9 @@ public class SettingsActivity extends PreferenceActivity {
         mPreferences = PreferenceUtils.getInstance(this);
 
         // Initialze the image cache
-        mImageCache = ImageCache.getInstance(this);
-
+        mImageCache = ImageCache.getInstance(this);	
+        
+        if(ApolloUtils.hasSdk(Build.VERSION_CODES.HONEYCOMB))
         // UP
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -77,11 +81,12 @@ public class SettingsActivity extends PreferenceActivity {
         // Removes the cache entries
         deleteCache();
         // About
-//        showOpenSourceLicenses();
+        showOpenSourceLicenses();
         // Update the version number
         try {
             final PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
             findPreference("version").setSummary(packageInfo.versionName);
+            findPreference("version1").setSummary(packageInfo.versionName);
         } catch (final NameNotFoundException e) {
             findPreference("version").setSummary("?");
         }

@@ -11,6 +11,8 @@
 
 package com.andrew.apollo.widgets;
 
+import com.andrew.apollo.utils.ApolloUtils;
+
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
@@ -289,6 +291,7 @@ public class ShowHideMasterLayout extends ViewGroup implements Animator.Animator
             final long mDuration = getResources()
                     .getInteger(android.R.integer.config_shortAnimTime);
 
+            if(ApolloUtils.hasSdk(Build.VERSION_CODES.HONEYCOMB)){
             /* Animate if we have Honeycomb APIs, don't animate otherwise */
             mIsAnimating = true;
             final AnimatorSet mAnimatorSet = new AnimatorSet();
@@ -301,6 +304,7 @@ public class ShowHideMasterLayout extends ViewGroup implements Animator.Animator
                             mDuration));
             mAnimatorSet.addListener(this);
             mAnimatorSet.start();
+            }
         }
     }
 

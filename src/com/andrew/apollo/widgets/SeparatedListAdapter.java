@@ -8,7 +8,7 @@ import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 
-import com.andrew.apollo.R;
+import com.andrew.lw.apollo.R;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

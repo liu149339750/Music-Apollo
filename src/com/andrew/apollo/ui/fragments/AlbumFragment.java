@@ -12,14 +12,12 @@
 package com.andrew.apollo.ui.fragments;
 
 import static com.andrew.apollo.utils.PreferenceUtils.ALBUM_LAYOUT;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
-import android.text.TextUtils;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -37,9 +35,8 @@ import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.andrew.apollo.Config;
 import com.andrew.apollo.MusicStateListener;
-import com.andrew.apollo.R;
+import com.andrew.lw.apollo.R;
 import com.andrew.apollo.adapters.AlbumAdapter;
 import com.andrew.apollo.cache.ImageFetcher;
 import com.andrew.apollo.loaders.AlbumLoader;
@@ -178,7 +175,14 @@ public class AlbumFragment extends Fragment implements LoaderCallbacks<List<Albu
     public void onPause() {
         super.onPause();
         mAdapter.flush();
+//        MobclickAgent.onPageEnd("AlbumFragment"); 
     }
+    
+//    @Override
+//    public void onResume() {
+//    	super.onResume();
+//    	MobclickAgent.onPageStart("AlbumFragment");
+//    }
 
     /**
      * {@inheritDoc}

@@ -31,7 +31,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.andrew.apollo.Config;
-import com.andrew.apollo.R;
+import com.andrew.lw.apollo.R;
 import com.andrew.apollo.adapters.ProfileSongAdapter;
 import com.andrew.apollo.loaders.GenreSongLoader;
 import com.andrew.apollo.menu.CreateNewPlaylist;
@@ -345,4 +345,16 @@ public class GenreSongFragment extends Fragment implements LoaderCallbacks<List<
         SystemClock.sleep(10);
         getLoaderManager().restartLoader(LOADER, getArguments(), this);
     }
+    
+/*    @Override
+    public void onPause() {
+    	super.onPause();
+    	MobclickAgent.onPageEnd("GenreSongFragment"); 
+    }
+    
+    @Override
+    public void onResume() {
+    	super.onResume();
+    	MobclickAgent.onPageStart("GenreSongFragment");
+    }*/
 }

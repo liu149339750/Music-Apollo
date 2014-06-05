@@ -30,7 +30,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
-import com.andrew.apollo.R;
+import com.andrew.lw.apollo.R;
 
 import java.io.File;
 import java.io.FileWriter;

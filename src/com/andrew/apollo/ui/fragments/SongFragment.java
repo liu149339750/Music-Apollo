@@ -18,7 +18,6 @@ import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
-import android.text.TextUtils;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -33,7 +32,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.andrew.apollo.MusicStateListener;
-import com.andrew.apollo.R;
+import com.andrew.lw.apollo.R;
 import com.andrew.apollo.adapters.SongAdapter;
 import com.andrew.apollo.loaders.SongLoader;
 import com.andrew.apollo.menu.CreateNewPlaylist;
@@ -377,4 +376,5 @@ public class SongFragment extends Fragment implements LoaderCallbacks<List<Song>
     public void onMetaChanged() {
         // Nothing to do
     }
+    
 }

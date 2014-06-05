@@ -32,7 +32,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.andrew.apollo.Config;
-import com.andrew.apollo.R;
+import com.andrew.lw.apollo.R;
 import com.andrew.apollo.adapters.ArtistAlbumAdapter;
 import com.andrew.apollo.loaders.ArtistAlbumLoader;
 import com.andrew.apollo.menu.CreateNewPlaylist;
@@ -168,7 +168,14 @@ public class ArtistAlbumFragment extends Fragment implements LoaderCallbacks<Lis
     public void onPause() {
         super.onPause();
         mAdapter.flush();
+//        MobclickAgent.onPageEnd("ArtistAlbumFragment"); 
     }
+    
+//    @Override
+//    public void onResume() {
+//    	super.onResume();
+//    	MobclickAgent.onPageStart("ArtistAlbumFragment");
+//    }
 
     /**
      * {@inheritDoc}
@@ -332,4 +339,5 @@ public class ArtistAlbumFragment extends Fragment implements LoaderCallbacks<Lis
         mAdapter.notifyDataSetChanged();
         getLoaderManager().restartLoader(LOADER, getArguments(), this);
     }
+    
 }

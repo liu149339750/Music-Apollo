@@ -24,6 +24,7 @@ import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.andrew.apollo.utils.ApolloUtils;
+import com.andrew.lw.apollo.R;
 
 /**
  * Builds the notification for Apollo's service. Jelly Bean and higher uses the

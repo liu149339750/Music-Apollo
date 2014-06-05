@@ -32,7 +32,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.andrew.apollo.Config;
-import com.andrew.apollo.R;
+import com.andrew.lw.apollo.R;
 import com.andrew.apollo.adapters.ProfileSongAdapter;
 import com.andrew.apollo.dragdrop.DragSortListView;
 import com.andrew.apollo.dragdrop.DragSortListView.DragScrollProfile;
@@ -410,4 +410,16 @@ public class PlaylistSongFragment extends Fragment implements LoaderCallbacks<Li
         MediaStore.Audio.Playlists.Members.moveItem(getActivity().getContentResolver(),
                 mPlaylistId, realFrom, realTo);
     }
+    
+//    @Override
+//    public void onPause() {
+//    	super.onPause();
+//    	MobclickAgent.onPageEnd("PlaylistSongFragment"); 
+//    }
+//    
+//    @Override
+//    public void onResume() {
+//    	super.onResume();
+//    	MobclickAgent.onPageStart("PlaylistSongFragment");
+//    }
 }

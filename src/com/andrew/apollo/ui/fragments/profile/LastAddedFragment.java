@@ -31,7 +31,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.andrew.apollo.R;
+import com.andrew.lw.apollo.R;
 import com.andrew.apollo.adapters.ProfileSongAdapter;
 import com.andrew.apollo.loaders.LastAddedLoader;
 import com.andrew.apollo.menu.CreateNewPlaylist;
@@ -335,5 +335,17 @@ public class LastAddedFragment extends Fragment implements LoaderCallbacks<List<
         // Clear the data in the adapter
         mAdapter.unload();
     }
+    
+/*    @Override
+    public void onResume() {
+    	super.onResume();
+    	MobclickAgent.onPageStart("LastAddedFragment");
+    }
+    
+    @Override
+    public void onPause() {
+    	super.onPause();
+    	MobclickAgent.onPageEnd("LastAddedFragment"); 
+    }*/
 
 }

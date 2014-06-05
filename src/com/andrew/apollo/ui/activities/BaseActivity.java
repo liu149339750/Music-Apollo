@@ -22,12 +22,14 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.media.AudioManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -36,7 +38,7 @@ import com.actionbarsherlock.widget.SearchView.OnQueryTextListener;
 import com.andrew.apollo.IApolloService;
 import com.andrew.apollo.MusicPlaybackService;
 import com.andrew.apollo.MusicStateListener;
-import com.andrew.apollo.R;
+import com.andrew.lw.apollo.R;
 import com.andrew.apollo.utils.ApolloUtils;
 import com.andrew.apollo.utils.Lists;
 import com.andrew.apollo.utils.MusicUtils;
@@ -46,8 +48,11 @@ import com.andrew.apollo.utils.ThemeUtils;
 import com.andrew.apollo.widgets.PlayPauseButton;
 import com.andrew.apollo.widgets.RepeatButton;
 import com.andrew.apollo.widgets.ShuffleButton;
+import com.umeng.analytics.MobclickAgent;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+
+import net.youmi.android.diy.DiyManager;
 
 /**
  * A base {@link FragmentActivity} used to update the bottom bar and
@@ -161,7 +166,11 @@ public abstract class BaseActivity extends SherlockFragmentActivity implements S
         // Current info
         updateBottomActionBarInfo();
         // Update the favorites icon
-        invalidateOptionsMenu();
+//        invalidateOptionsMenu();
+        if(ApolloUtils.hasSdk(Build.VERSION_CODES.HONEYCOMB))
+        	invalidateOptionsMenu();
+        else
+        	supportInvalidateOptionsMenu();
     }
 
     /**
@@ -218,7 +227,10 @@ public abstract class BaseActivity extends SherlockFragmentActivity implements S
                 // Settings
                 NavUtils.openSettings(this);
                 return true;
-
+            case R.id.menu_recommand:
+            	DiyManager.showRecommendWall(this);
+            	MobclickAgent.onEvent(this, "recommand");
+            	return true;
             default:
                 break;
         }
@@ -235,6 +247,13 @@ public abstract class BaseActivity extends SherlockFragmentActivity implements S
         updatePlaybackControls();
         // Current info
         updateBottomActionBarInfo();
+        MobclickAgent.onResume(this);
+    }
+    
+    @Override
+    protected void onPause() {
+    	super.onPause();
+    	MobclickAgent.onPause(this);
     }
 
     /**
@@ -412,7 +431,8 @@ public abstract class BaseActivity extends SherlockFragmentActivity implements S
                 // Current info
                 mReference.get().updateBottomActionBarInfo();
                 // Update the favorites icon
-                mReference.get().invalidateOptionsMenu();
+//                mReference.get().invalidateOptionsMenu();
+               ((SherlockFragmentActivity) mReference.get()).supportInvalidateOptionsMenu();
                 // Let the listener know to the meta chnaged
                 for (final MusicStateListener listener : mReference.get().mMusicStateListener) {
                     if (listener != null) {

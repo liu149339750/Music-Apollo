@@ -37,7 +37,7 @@ import android.widget.ListView;
 
 import com.andrew.apollo.Config;
 import com.andrew.apollo.MusicStateListener;
-import com.andrew.apollo.R;
+import com.andrew.lw.apollo.R;
 import com.andrew.apollo.adapters.PlaylistAdapter;
 import com.andrew.apollo.loaders.PlaylistLoader;
 import com.andrew.apollo.menu.FragmentMenuItems;
@@ -332,4 +332,5 @@ public class PlaylistFragment extends Fragment implements LoaderCallbacks<List<P
                 }).setMessage(R.string.cannot_be_undone).create();
     }
 
+    
 }

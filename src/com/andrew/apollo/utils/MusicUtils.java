@@ -39,7 +39,7 @@ import android.view.SubMenu;
 
 import com.andrew.apollo.IApolloService;
 import com.andrew.apollo.MusicPlaybackService;
-import com.andrew.apollo.R;
+import com.andrew.lw.apollo.R;
 import com.andrew.apollo.loaders.FavoritesLoader;
 import com.andrew.apollo.loaders.LastAddedLoader;
 import com.andrew.apollo.loaders.PlaylistLoader;
@@ -52,8 +52,6 @@ import com.devspark.appmsg.AppMsg;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.Formatter;
-import java.util.Locale;
 import java.util.WeakHashMap;
 
 /**

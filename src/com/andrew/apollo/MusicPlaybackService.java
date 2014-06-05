@@ -100,7 +100,7 @@ public class MusicPlaybackService extends Service {
     /**
      * Indicates the repeat mode chaned
      */
-    public static final String REPEATMODE_CHANGED = "com.andrew.apollo.repeatmodechanged";
+    public static final String REPEATMODE_CHANGED = "com.andrew.lw.apollo.Repeatmodechanged";
 
     /**
      * Indicates the shuffle mode chaned
@@ -148,7 +148,7 @@ public class MusicPlaybackService extends Service {
     /**
      * Called to change the repeat mode
      */
-    public static final String REPEAT_ACTION = "com.andrew.apollo.repeat";
+    public static final String REPEAT_ACTION = "com.andrew.lw.apollo.Repeat";
 
     /**
      * Called to change the shuffle mode
@@ -168,7 +168,7 @@ public class MusicPlaybackService extends Service {
      * Used to easily notify a list that it should refresh. i.e. A playlist
      * changes
      */
-    public static final String REFRESH = "com.andrew.apollo.refresh";
+    public static final String REFRESH = "com.andrew.lw.apollo.Refresh";
 
     /**
      * Used by the alarm intent to shutdown the service after being idle

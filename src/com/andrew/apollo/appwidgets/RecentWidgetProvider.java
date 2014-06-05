@@ -27,7 +27,7 @@ import android.widget.RemoteViews;
 
 import com.andrew.apollo.Config;
 import com.andrew.apollo.MusicPlaybackService;
-import com.andrew.apollo.R;
+import com.andrew.lw.apollo.R;
 import com.andrew.apollo.ui.activities.AudioPlayerActivity;
 import com.andrew.apollo.ui.activities.HomeActivity;
 import com.andrew.apollo.ui.activities.ProfileActivity;
@@ -50,9 +50,9 @@ public class RecentWidgetProvider extends AppWidgetBase {
 
     public static final String CMDAPPWIDGETUPDATE = "app_widget_recents_update";
 
-    public static final String CLICK_ACTION = "com.andrew.apollo.recents.appwidget.action.CLICK";
+    public static final String CLICK_ACTION = "com.andrew.lw.apollo.Recents.appwidget.action.CLICK";
 
-    public static final String REFRESH_ACTION = "com.andrew.apollo.recents.appwidget.action.REFRESH";
+    public static final String REFRESH_ACTION = "com.andrew.lw.apollo.Recents.appwidget.action.REFRESH";
 
     private static Handler sWorkerQueue;
 

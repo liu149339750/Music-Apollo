@@ -30,7 +30,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.andrew.apollo.Config;
-import com.andrew.apollo.R;
+import com.andrew.lw.apollo.R;
 import com.andrew.apollo.adapters.GenreAdapter;
 import com.andrew.apollo.loaders.GenreLoader;
 import com.andrew.apollo.menu.FragmentMenuItems;
@@ -233,5 +233,6 @@ public class GenreFragment extends Fragment implements LoaderCallbacks<List<Genr
         // Clear the data in the adapter
         mAdapter.unload();
     }
+    
 
 }

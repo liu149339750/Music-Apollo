@@ -31,7 +31,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.andrew.apollo.Config;
-import com.andrew.apollo.R;
+import com.andrew.lw.apollo.R;
 import com.andrew.apollo.adapters.ProfileSongAdapter;
 import com.andrew.apollo.loaders.AlbumSongLoader;
 import com.andrew.apollo.menu.CreateNewPlaylist;
@@ -342,4 +342,16 @@ public class AlbumSongFragment extends Fragment implements LoaderCallbacks<List<
         mAdapter.notifyDataSetChanged();
         getLoaderManager().restartLoader(LOADER, getArguments(), this);
     }
+    
+/*    @Override
+    public void onPause() {
+    	super.onPause();
+    	MobclickAgent.onPageEnd("AlbumSongFragment"); 
+    }
+    
+    @Override
+    public void onResume() {
+    	super.onResume();
+    	MobclickAgent.onPageStart("AlbumSongFragment");
+    }*/
 }

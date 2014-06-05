@@ -11,9 +11,7 @@
 
 package com.andrew.apollo.ui.activities;
 
-import net.youmi.android.AdManager;
 import net.youmi.android.diy.DiyManager;
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -23,20 +21,19 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
 import android.preference.Preference;
-import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.view.MenuItem;
-import com.andrew.apollo.MusicPlaybackService;
-import com.andrew.apollo.R;
+
+import com.andrew.lw.apollo.R;
 import com.andrew.apollo.cache.ImageCache;
 import com.andrew.apollo.ui.fragments.ThemeFragment;
 import com.andrew.apollo.utils.ApolloUtils;
 import com.andrew.apollo.utils.MusicUtils;
 import com.andrew.apollo.utils.PreferenceUtils;
 import com.andrew.apollo.widgets.ColorSchemeDialog;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Settings.
@@ -62,7 +59,6 @@ public class SettingsActivity extends PreferenceActivity {
         super.onCreate(savedInstanceState);
         // Fade it in
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        AdManager.getInstance(this).init("c7a673b11d50ff34", "60e6cabfa2a88598", false);
         // Get the preferences
         mPreferences = PreferenceUtils.getInstance(this);
 
@@ -101,6 +97,7 @@ public class SettingsActivity extends PreferenceActivity {
             @Override
             public boolean onPreferenceClick(final Preference preference) {
             	DiyManager.showRecommendWall(SettingsActivity.this);
+            	MobclickAgent.onEvent(SettingsActivity.this, "recommand1");
                 return true;
             }
         });
@@ -217,8 +214,21 @@ public class SettingsActivity extends PreferenceActivity {
             @Override
             public boolean onPreferenceClick(final Preference preference) {
                 ApolloUtils.createOpenSourceDialog(SettingsActivity.this).show();
+                MobclickAgent.onEvent(SettingsActivity.this, "open_source");
                 return true;
             }
         });
+    }
+    
+    @Override
+    protected void onPause() {
+    	super.onPause();
+    	MobclickAgent.onPause(this);
+    }
+    
+    @Override
+    protected void onResume() {
+    	super.onResume();
+    	MobclickAgent.onResume(this);
     }
 }

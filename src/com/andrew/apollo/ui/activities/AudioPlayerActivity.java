@@ -33,7 +33,6 @@ import android.os.SystemClock;
 import android.provider.MediaStore.Audio.Playlists;
 import android.provider.MediaStore.Audio.Albums;
 import android.provider.MediaStore.Audio.Artists;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -55,7 +54,7 @@ import com.actionbarsherlock.widget.SearchView;
 import com.actionbarsherlock.widget.SearchView.OnQueryTextListener;
 import com.andrew.apollo.IApolloService;
 import com.andrew.apollo.MusicPlaybackService;
-import com.andrew.apollo.R;
+import com.andrew.lw.apollo.R;
 import com.andrew.apollo.adapters.PagerAdapter;
 import com.andrew.apollo.cache.ImageFetcher;
 import com.andrew.apollo.ui.fragments.QueueFragment;
@@ -226,7 +225,8 @@ public class AudioPlayerActivity extends SherlockFragmentActivity implements Ser
         // Current info
         updateNowPlayingInfo();
         // Update the favorites icon
-        invalidateOptionsMenu();
+//        invalidateOptionsMenu();
+        supportInvalidateOptionsMenu();
     }
 
     /**
@@ -363,7 +363,10 @@ public class AudioPlayerActivity extends SherlockFragmentActivity implements Ser
                 // Toggle the current track as a favorite and update the menu
                 // item
                 MusicUtils.toggleFavorite();
-                invalidateOptionsMenu();
+                if(ApolloUtils.hasSdk(Build.VERSION_CODES.HONEYCOMB))
+                	invalidateOptionsMenu();
+                else
+                	supportInvalidateOptionsMenu();
                 return true;
             case R.id.menu_audio_player_ringtone:
                 // Set the current track as a ringtone

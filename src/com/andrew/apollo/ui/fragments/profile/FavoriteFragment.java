@@ -31,7 +31,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.andrew.apollo.R;
+import com.andrew.lw.apollo.R;
 import com.andrew.apollo.adapters.ProfileSongAdapter;
 import com.andrew.apollo.loaders.FavoritesLoader;
 import com.andrew.apollo.menu.CreateNewPlaylist;
@@ -337,5 +337,17 @@ public class FavoriteFragment extends Fragment implements LoaderCallbacks<List<S
         // Clear the data in the adapter
         mAdapter.unload();
     }
+    
+/*    @Override
+    public void onResume() {
+    	super.onResume();
+    	MobclickAgent.onPageStart("FavoriteFragment");
+    }
+    
+    @Override
+    public void onPause() {
+    	super.onPause();
+    	MobclickAgent.onPageEnd("FavoriteFragment"); 
+    }*/
 
 }

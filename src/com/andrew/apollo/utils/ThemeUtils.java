@@ -37,7 +37,7 @@ import android.widget.TextView;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.andrew.apollo.R;
+import com.andrew.lw.apollo.R;
 
 /**
  * In order to implement the theme chooser for Apollo, this class returns a
@@ -64,7 +64,7 @@ public class ThemeUtils {
     /**
      * Default package name.
      */
-    public static final String APOLLO_PACKAGE = "com.andrew.apollo";
+    public static final String APOLLO_PACKAGE = "com.andrew.lw.apollo";
 
     /**
      * Current theme package name.
@@ -267,6 +267,15 @@ public class ThemeUtils {
      */
     public void setFavoriteIcon(final Menu favorite) {
         final MenuItem favoriteAction = favorite.findItem(R.id.menu_favorite);
+        final String favoriteIconId = "ic_action_favorite";
+        if (MusicUtils.isFavorite()) {
+            setMenuItemColor(favoriteAction, "favorite_selected", favoriteIconId);
+        } else {
+            setMenuItemColor(favoriteAction, "favorite_normal", favoriteIconId);
+        }
+    }
+    
+    public void setFavoriteIcon(final MenuItem favoriteAction) {
         final String favoriteIconId = "ic_action_favorite";
         if (MusicUtils.isFavorite()) {
             setMenuItemColor(favoriteAction, "favorite_selected", favoriteIconId);

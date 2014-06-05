@@ -16,8 +16,9 @@ import android.os.Bundle;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.andrew.apollo.R;
+import com.andrew.lw.apollo.R;
 import com.andrew.apollo.ui.fragments.ThemeFragment;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * A class the displays the {@link ThemeFragment}.
@@ -87,5 +88,17 @@ public class ThemesActivity extends BaseActivity {
     @Override
     public int setContentView() {
         return R.layout.activity_base;
+    }
+    
+    @Override
+    protected void onPause() {
+    	super.onPause();
+    	MobclickAgent.onPause(this);
+    }
+    
+    @Override
+    protected void onResume() {
+    	super.onResume();
+    	MobclickAgent.onResume(this);
     }
 }

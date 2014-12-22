@@ -18,7 +18,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.andrew.lw.apollo.R;
 import com.andrew.apollo.ui.fragments.ThemeFragment;
-import com.umeng.analytics.MobclickAgent;
+//import com.umeng.analytics.MobclickAgent;
 
 /**
  * A class the displays the {@link ThemeFragment}.
@@ -93,12 +93,12 @@ public class ThemesActivity extends BaseActivity {
     @Override
     protected void onPause() {
     	super.onPause();
-    	MobclickAgent.onPause(this);
+//    	MobclickAgent.onPause(this);
     }
     
     @Override
     protected void onResume() {
     	super.onResume();
-    	MobclickAgent.onResume(this);
+//    	MobclickAgent.onResume(this);
     }
 }

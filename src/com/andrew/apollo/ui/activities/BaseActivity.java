@@ -48,11 +48,13 @@ import com.andrew.apollo.utils.ThemeUtils;
 import com.andrew.apollo.widgets.PlayPauseButton;
 import com.andrew.apollo.widgets.RepeatButton;
 import com.andrew.apollo.widgets.ShuffleButton;
-import com.umeng.analytics.MobclickAgent;
+//import com.umeng.analytics.MobclickAgent;
+
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import net.youmi.android.diy.DiyManager;
+import net.youmi.android.offers.OffersManager;
 
 /**
  * A base {@link FragmentActivity} used to update the bottom bar and
@@ -228,8 +230,9 @@ public abstract class BaseActivity extends SherlockFragmentActivity implements S
                 NavUtils.openSettings(this);
                 return true;
             case R.id.menu_recommand:
-            	DiyManager.showRecommendWall(this);
-            	MobclickAgent.onEvent(this, "recommand");
+//            	DiyManager.showRecommendWall(this);
+            	OffersManager.getInstance(this).showOffersWall();
+//            	MobclickAgent.onEvent(this, "recommand");
             	return true;
             default:
                 break;
@@ -247,13 +250,13 @@ public abstract class BaseActivity extends SherlockFragmentActivity implements S
         updatePlaybackControls();
         // Current info
         updateBottomActionBarInfo();
-        MobclickAgent.onResume(this);
+//        MobclickAgent.onResume(this);
     }
     
     @Override
     protected void onPause() {
     	super.onPause();
-    	MobclickAgent.onPause(this);
+//    	MobclickAgent.onPause(this);
     }
 
     /**

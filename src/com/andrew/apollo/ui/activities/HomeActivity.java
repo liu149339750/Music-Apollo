@@ -16,10 +16,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
-import com.andrew.lw.apollo.R;
 import com.andrew.apollo.ui.fragments.phone.MusicBrowserPhoneFragment;
-import com.umeng.analytics.MobclickAgent;
-import com.umeng.update.UmengUpdateAgent;
+import com.andrew.lw.apollo.R;
+//import com.umeng.analytics.MobclickAgent;
+//import com.umeng.update.UmengUpdateAgent;
 
 /**
  * This class is used to display the {@link ViewPager} used to swipe between the
@@ -35,15 +35,15 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MobclickAgent.updateOnlineConfig( this );
+//        MobclickAgent.updateOnlineConfig( this );
         // Load the music browser fragment
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.activity_base_content, new MusicBrowserPhoneFragment()).commit();
         }
         AdManager.getInstance(this).init("30728b2a5f4974e2", "0fcfea9b0b5c6513", false);
-        AdManager.getInstance(this).setUserDataCollect(true);
-        UmengUpdateAgent.update(this);
+//        AdManager.getInstance(this).setUserDataCollect(true);
+//        UmengUpdateAgent.update(this);
     }
 
     /**

@@ -33,7 +33,7 @@ import com.andrew.apollo.utils.ApolloUtils;
 import com.andrew.apollo.utils.MusicUtils;
 import com.andrew.apollo.utils.PreferenceUtils;
 import com.andrew.apollo.widgets.ColorSchemeDialog;
-import com.umeng.analytics.MobclickAgent;
+//import com.umeng.analytics.MobclickAgent;
 
 /**
  * Settings.
@@ -97,7 +97,7 @@ public class SettingsActivity extends PreferenceActivity {
             @Override
             public boolean onPreferenceClick(final Preference preference) {
             	DiyManager.showRecommendWall(SettingsActivity.this);
-            	MobclickAgent.onEvent(SettingsActivity.this, "recommand1");
+//            	MobclickAgent.onEvent(SettingsActivity.this, "recommand1");
                 return true;
             }
         });
@@ -214,7 +214,7 @@ public class SettingsActivity extends PreferenceActivity {
             @Override
             public boolean onPreferenceClick(final Preference preference) {
                 ApolloUtils.createOpenSourceDialog(SettingsActivity.this).show();
-                MobclickAgent.onEvent(SettingsActivity.this, "open_source");
+//                MobclickAgent.onEvent(SettingsActivity.this, "open_source");
                 return true;
             }
         });
@@ -223,12 +223,12 @@ public class SettingsActivity extends PreferenceActivity {
     @Override
     protected void onPause() {
     	super.onPause();
-    	MobclickAgent.onPause(this);
+//    	MobclickAgent.onPause(this);
     }
     
     @Override
     protected void onResume() {
     	super.onResume();
-    	MobclickAgent.onResume(this);
+//    	MobclickAgent.onResume(this);
     }
 }
